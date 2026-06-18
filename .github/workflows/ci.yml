@@ -17,7 +17,7 @@ jobs:
             build-type: Release
             cmake_args: '-A x64'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Setup CMake
         uses: jwlawson/actions-setup-cmake@v1
       - name: Configure
@@ -30,7 +30,7 @@ jobs:
   clang-format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install clang-format
         run: sudo apt-get update && sudo apt-get install -y clang-format
       - name: Check formatting

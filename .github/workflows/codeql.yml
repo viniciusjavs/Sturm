@@ -16,7 +16,7 @@ jobs:
       workflows_changed: ${{ steps.check.outputs.workflows_changed }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - id: check
@@ -44,7 +44,7 @@ jobs:
     if: needs.check.outputs.workflows_changed != 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:

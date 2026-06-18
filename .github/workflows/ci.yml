@@ -1,0 +1,37 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            build-type: Release
+            cmake_args: ''
+          - os: macos-latest
+            build-type: Release
+            cmake_args: ''
+          - os: windows-latest
+            build-type: Release
+            cmake_args: '-A x64'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v1
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} ${{ matrix.cmake_args }}
+      - name: Build
+        run: cmake --build build --config ${{ matrix.build-type }} --parallel 2
+      - name: Run tests
+        run: ctest --test-dir build -C ${{ matrix.build-type }} --output-on-failure
+
+  clang-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+      - name: Check formatting
+        run: git ls-files '*.cpp' '*.h' | xargs -r clang-format -style=file --dry-run --Werror

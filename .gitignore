@@ -1,0 +1,29 @@
+# Build artifacts
+/build/
+build/
+/build_*/
+/CMakeFiles/
+/CMakeCache.txt
+/Makefile
+/CTestTestfile.cmake
+/Testing/
+/*.a
+/*.o
+/*.obj
+/*.exe
+/*.dll
+
+# CMake FetchContent build outputs
+build/_deps/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log

@@ -30,6 +30,7 @@ class Sturm {
 
   public:
     void set_parameters();
+    void set_coeffs(int ord, const std::vector<double>& coefs);
     std::vector<std::vector<double>> get_sturm_sequence();
     void show_sturm_sequence(const std::vector<std::vector<double>> &);
     std::vector<double> get_real_roots();

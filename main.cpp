@@ -1,7 +1,6 @@
 #include "sturm.h"
 
-int main()
-{
+int main() {
     Sturm sturm;
     sturm.set_parameters();
     sturm.show_sturm_sequence(sturm.get_sturm_sequence());

@@ -1,3 +1,7 @@
+# Sturm (modernized)
+
+This repository was modernized with CMake, unit tests, CI, formatting, and developer tooling.
+
 # Sturm sequences
 
 A way to find real roots of polynomial equations.

@@ -1,0 +1,6 @@
+{
+  "name": "Sturm Dev",
+  "image": "mcr.microsoft.com/vscode/devcontainers/cpp:0-ubuntu-22.04",
+  "features": {},
+  "postCreateCommand": "cmake -S . -B build && cmake --build build"
+}

@@ -149,8 +149,8 @@ std::vector<double> Sturm::get_real_roots()
     // Get the number of real roots
     nroots = num_roots();
     if (nroots == 0) {
-	std::cout << "solve: no real roots\n";
-        exit (0); ///exception?
+        // No real roots found — return empty vector rather than exiting the process
+        return std::vector<double>{};
     }
     
     // Calculate the bracket that the roots live in

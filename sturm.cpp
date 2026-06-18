@@ -407,3 +407,13 @@ void Sturm::show_roots(const std::vector<double> &roots)
         std::cout << '\n';
     }
 }
+
+// Added for testability: set polynomial coefficients (coef[i] is coefficient for x^i)
+void Sturm::set_coeffs(int ord, const std::vector<double>& coefs)
+{
+    order = ord;
+    for (int i = 0; i <= ord && i < max_order; ++i)
+        sturm_seq[0].coef[i] = (i < (int)coefs.size()) ? coefs[i] : 0.0;
+    for (int i = ord + 1; i < max_order; ++i)
+        sturm_seq[0].coef[i] = 0.0;
+}

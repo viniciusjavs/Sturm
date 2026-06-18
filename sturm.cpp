@@ -146,7 +146,8 @@ int Sturm::modp(Poly *u, Poly *v, Poly *r)
 
 std::vector<double> Sturm::get_real_roots()
 {
-    // Get the number of real roots
+    // Build the Sturm sequence and get the number of real roots
+    num_poly = build_sturm();
     nroots = num_roots();
     if (nroots == 0) {
         // No real roots found — return empty vector rather than exiting the process

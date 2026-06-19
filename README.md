@@ -1,12 +1,26 @@
-# Sturm (modernized)
+# Sturm
 
-This repository was modernized with CMake, unit tests, CI, formatting, and developer tooling.
+C++ implementation of Sturm sequences to bracket real roots of polynomials.
 
-# Sturm sequences
+This repository provides:
+- Library implementing Sturm sequences (sturm.h / sturm.cpp)
+- CLI (sturm_app) and unit tests (Catch2)
+- CMake build system and GitHub Actions CI
 
-A way to find real roots of polynomial equations.
+## Quick start
 
-## Example of usage:
+Build and run tests with CMake:
+
+    mkdir -p build && cmake -S . -B build && cmake --build build
+    ctest --test-dir build --output-on-failure
+
+## Usage
+
+Run the CLI and enter polynomial degree and coefficients when prompted:
+
+    ./build/sturm_app
+
+## Example:
 
 ```
 Please enter order of polynomial: 6
@@ -34,5 +48,6 @@ Sturm sequence for:
 ```
 
 ## References
-* [C code](https://webdocs.cs.ualberta.ca/~graphics/books/GraphicsGems/gems/Sturm/) from Graphic Gems by D.G. Hook and P. R. McAree.
-* [Roots of Polynomials](polyroots.pdf) - Yan-Bin Jia 
+
+- Original [C implementation](https://github.com/erich666/GraphicsGems/tree/master/gems/Sturm) (Graphics Gems) — D.G. Hook and P. R. McAree.
+- Further reading: ["Roots of Polynomials"](docs/polyroots.pdf) (PDF) — Yan-Bin Jia

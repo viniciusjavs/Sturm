@@ -1,0 +1,16 @@
+# Advisory static analysis. Diagnostics are reported but do not fail the build
+# (WarningsAsErrors is intentionally empty); the compiler -Werror flags gate CI.
+Checks: >
+  bugprone-*,
+  performance-*,
+  modernize-*,
+  readability-*,
+  cppcoreguidelines-*,
+  -modernize-use-trailing-return-type,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-pro-bounds-constant-array-index
+WarningsAsErrors: ''
+HeaderFilterRegex: 'include/sturm/.*'

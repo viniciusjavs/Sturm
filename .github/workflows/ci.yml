@@ -5,6 +5,7 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
@@ -21,11 +22,38 @@ jobs:
       - name: Setup CMake
         uses: jwlawson/actions-setup-cmake@v2
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} ${{ matrix.cmake_args }}
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -DSTURM_WERROR=ON ${{ matrix.cmake_args }}
       - name: Build
         run: cmake --build build --config ${{ matrix.build-type }} --parallel 2
       - name: Run tests
         run: ctest --test-dir build -C ${{ matrix.build-type }} --output-on-failure
+
+  sanitizers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v2
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DSTURM_ENABLE_SANITIZERS=ON -DSTURM_WERROR=ON
+      - name: Build
+        run: cmake --build build --parallel 2
+      - name: Run tests
+        run: ctest --test-dir build --output-on-failure
+        env:
+          UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+          ASAN_OPTIONS: detect_leaks=1
+
+  clang-tidy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install clang-tidy
+        run: sudo apt-get update && sudo apt-get install -y clang-tidy
+      - name: Configure (export compile commands)
+        run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DSTURM_BUILD_TESTS=OFF
+      - name: Run clang-tidy
+        run: clang-tidy -p build src/sturm.cpp src/main.cpp
 
   clang-format:
     runs-on: ubuntu-latest
@@ -34,4 +62,4 @@ jobs:
       - name: Install clang-format
         run: sudo apt-get update && sudo apt-get install -y clang-format
       - name: Check formatting
-        run: git ls-files '*.cpp' '*.h' | xargs -r clang-format -style=file --dry-run --Werror
+        run: git ls-files '*.cpp' '*.hpp' '*.h' | xargs -r clang-format -style=file --dry-run --Werror

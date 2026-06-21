@@ -1,0 +1,52 @@
+Sturm — C++ implementation of Sturm sequences for bracketing real polynomial roots
+===================================================================================
+
+This project is derived from the "Sturm" routine published in:
+
+    "Using Sturm Sequences to Bracket Real Roots of Polynomial Equations"
+    by D. G. Hook and P. R. McAree, in "Graphics Gems" (Academic Press, 1990).
+    Source: https://github.com/erich666/GraphicsGems/tree/master/gems/Sturm
+
+The numerical method and the structure of the original kernel are the work of
+the Graphics Gems authors and are used under the Graphics Gems license below.
+The C++ port, modernization, API, tests, and tooling are by Vinicius Javs.
+
+
+Graphics Gems license (applies to the original algorithm)
+---------------------------------------------------------
+
+This code repository predates the concept of Open Source, and predates most
+licenses along such lines. As such, the official license truly is:
+
+EULA: The Graphics Gems code is copyright-protected. In other words, you cannot
+claim the text of the code as your own and resell it. Using the code is
+permitted in any program, product, or library, non-commercial or commercial.
+Giving credit is not required, though is a nice gesture. The code comes as-is,
+and if there are any flaws or problems with any Gems code, nobody involved with
+Gems - authors, editors, publishers, or webmasters - are to be held
+responsible. Basically, don't be a jerk, and remember that anything free comes
+with no guarantee.
+
+
+MIT License (applies to the C++ port and additions)
+---------------------------------------------------
+
+Copyright (c) 2017-2026 Vinicius Javs
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
